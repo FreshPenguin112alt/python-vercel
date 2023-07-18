@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, request
 
 app = Flask(__name__)
 
@@ -6,6 +6,8 @@ app = Flask(__name__)
 def home():
     return 'Welcome To The FROP API'
 
-@app.route('/about')
+@app.route('/api/v1', methods=["POST"])
 def about():
-    return 'About'
+  if not None is request.get_json(force=True)["code"]:
+    return request.get_json(force=True)["code"]
+  return "Hello, World!"
