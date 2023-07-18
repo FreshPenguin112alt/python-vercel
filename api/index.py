@@ -8,6 +8,7 @@ def home():
 
 @app.route('/api/v1', methods=["POST"])
 def about():
-  if not None is request.get_json(force=True)["code"]:
+  if not request.get_json(force=True)["code"] == None:
     return request.get_json(force=True)["code"]
-  return "Hello, World!"
+  else:
+    return "Hello, World!"
